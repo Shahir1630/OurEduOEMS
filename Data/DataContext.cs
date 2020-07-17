@@ -15,6 +15,8 @@ namespace OurEduOEMS.Data
 
         public DbSet<Users> Users { get; set; }
         public DbSet<Actors> Actors { get; set; }
+        public DbSet<Classes> Classes { get; set; }
+        public DbSet<Subjects> Subjects { get; set; }
 
         protected override void OnModelCreating (ModelBuilder modelBuilder)
         {

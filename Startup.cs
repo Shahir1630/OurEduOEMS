@@ -35,6 +35,8 @@ namespace OurEduOEMS
 
             services.AddScoped<IUsers, UsersService> ();
             services.AddScoped<IAccount, AccountService> ();
+            services.AddScoped<IClasses, ClassesService> ();
+            services.AddScoped<ISubjects, SubjectsService> ();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -63,7 +65,7 @@ namespace OurEduOEMS
              {
                  endpoints.MapControllerRoute (
                      name: "default",
-                     pattern: "{controller=Home}/{action=Index}/{id?}");
+                     pattern: "{controller=Account}/{action=Login}/{id?}");
              });
         }
     }
