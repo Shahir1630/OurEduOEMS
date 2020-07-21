@@ -14,5 +14,7 @@ namespace OurEduOEMS.Services.Interfaces
         void UpdateSubjects (Subjects changeSubject);
         void AddSubjects (Subjects newSubject);
         void DeleteSubjects (Subjects subject);
+
+        List<Classes> GetAllClasses ();
     }
 }

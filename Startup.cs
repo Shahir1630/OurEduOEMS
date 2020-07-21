@@ -37,6 +37,8 @@ namespace OurEduOEMS
             services.AddScoped<IAccount, AccountService> ();
             services.AddScoped<IClasses, ClassesService> ();
             services.AddScoped<ISubjects, SubjectsService> ();
+            services.AddScoped<IAssignClasses, AssignClassesService> ();
+            services.AddScoped<IAssignedSubject, AssignedSubjectsService> ();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

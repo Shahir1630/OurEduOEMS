@@ -10,73 +10,74 @@ using OurEduOEMS.Services.Interfaces;
 
 namespace OurEduOEMS.Controllers
 {
-    public class SubjectsController : Controller
+    public class AssignClassesController : Controller
     {
-        private readonly ISubjects _subjects;
+        private readonly IAssignClasses _assignClasses;
         private readonly IToastNotification _toastNotification;
 
-        public SubjectsController (ISubjects subjects, IToastNotification toastNotification)
+        public AssignClassesController (IAssignClasses assignClasses, IToastNotification toastNotification)
         {
-            _subjects = subjects;
+            _assignClasses = assignClasses;
             _toastNotification = toastNotification;
         }
+
         public IActionResult Index ()
         {
-
-            return View (_subjects.GetAllSubjects ());
-        }
-
+            var allClass = _assignClasses.GetAllAssignClasses ();
+            return View (allClass);
+        } 
+        
         public IActionResult Create ()
         {
-            ViewData["ClassId"] = new SelectList (_subjects.GetAllClasses (), "Id", "ClassName");
+            ViewData["ClassId"] = new SelectList (_assignClasses.GetAllClasses(), "Id", "ClassName");
             return View ();
         }
 
         [HttpPost]
-        public IActionResult Create (Subjects subjects)
+        public IActionResult Create ( AssignedClasses assignedClasses)
         {
-            if (ModelState.IsValid)
+            if(ModelState.IsValid)
             {
-                _subjects.AddSubjects (subjects);
+                _assignClasses.AddAssignClass (assignedClasses);
                 _toastNotification.AddSuccessToastMessage ("Successfully Created.");
                 return RedirectToAction (nameof (Index));
             }
-            return View (subjects);
+            return View (assignedClasses);
         }
 
         public IActionResult Edit (int Id)
         {
-            var subject = _subjects.GetSubjects (Id);
-            ViewData["ClassId"] = new SelectList (_subjects.GetAllClasses (), "Id", "ClassName");
+            var classes = _assignClasses.GetAssignClass (Id);
+            ViewData["ClassId"] = new SelectList (_assignClasses.GetAllClasses (), "Id", "ClassName");
 
-            if (subject == null)
+            if (classes == null)
             {
                 _toastNotification.AddErrorToastMessage ("Class Not Found");
                 return View (nameof (NotFound));
             }
-            return View (subject);
+            return View (classes);
         }
 
         [HttpPost]
-        public IActionResult Edit (Subjects subjects)
+        public IActionResult Edit (AssignedClasses assignedClasses)
         {
             if (ModelState.IsValid)
             {
-                _subjects.UpdateSubjects (subjects);
+                _assignClasses.UpdateAssignClass (assignedClasses);
                 _toastNotification.AddSuccessToastMessage ("Successfully Edited.");
                 return RedirectToAction (nameof (Index));
             }
-            return View (subjects);
+            return View (assignedClasses);
         }
 
         public IActionResult Delete (int Id)
         {
-            var subject = _subjects.GetSubjects (Id);
-            if (subject == null)
+            var classes = _assignClasses.GetAssignClass (Id);
+            if (classes == null)
             {
                 return View (nameof (NotFound));
             }
-            _subjects.DeleteSubjects (subject);
+            _assignClasses.DeleteAssignClass (classes);
             return RedirectToAction (nameof (Index));
         }
     }

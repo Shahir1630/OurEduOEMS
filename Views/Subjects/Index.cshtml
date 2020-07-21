@@ -15,6 +15,12 @@
             <th>
                 Subjects Name
             </th>
+            <th>
+                Clase Name
+            </th>
+            <th>
+                Active
+            </th>
         </tr>
     </thead>
     <tbody>
@@ -23,12 +29,18 @@
             <tr>
                 <td>
                     @item.SubjectName
+                </td> 
+                <td>
+                    @item.Classes.ClassName
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.SubjectId">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.SubjectId">Details</a> |
+                    @item.IsActive
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
                     <a class="btn btn-danger delete"
-                       data-id="@item.SubjectId"
+                       data-id="@item.Id"
                        data-controller="Subjects"
                        data-action="Delete"
                        data-body-message="Are You Sure to Delete the Subjects?">Delete</a>

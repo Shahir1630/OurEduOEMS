@@ -1,24 +1,20 @@
-﻿@model Subjects
+﻿@model AssignedClasses
 
 @{
-    ViewData["Title"] = "Edit Subject";
+    ViewData["Title"] = "Edit Assign Class";
 }
 
 
-<h4>Edit Class</h4>
+<h1>Create</h1>
+
+<h4>Edit Assign Class</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Edit" asp-controller="Subjects" method="post">
+        <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-
             <input asp-for="Id" type="hidden" class="form-control" />
 
-            <div class="form-group">
-                <label asp-for="SubjectName" class="control-label"></label>
-                <input asp-for="SubjectName" class="form-control" />
-                <span asp-validation-for="SubjectName" class="text-danger"></span>
-            </div>
             <div class="form-group">
                 <label asp-for="ClassesId" class="control-label"></label>
                 <select asp-for="ClassesId" class="form-control" asp-items="ViewBag.ClassId">
@@ -26,14 +22,15 @@
                 </select>
             </div>
             <div class="form-group">
-                <label asp-for="IsActive" class="control-label"></label>
-                <select asp-for="IsActive" class="form-control">
-                    <option selected>Select One </option>
-                    <option value="true">Yse </option>
-                    <option value="false">No </option>
-                </select>
+                <label asp-for="AssigningYear" class="control-label"></label>
+                <input asp-for="AssigningYear" class="form-control" />
+                <span asp-validation-for="AssigningYear" class="text-danger"></span>
             </div>
-
+            <div class="form-group">
+                <label asp-for="SectionName" class="control-label"></label>
+                <input asp-for="SectionName" class="form-control" />
+                <span asp-validation-for="SectionName" class="text-danger"></span>
+            </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
@@ -44,5 +41,3 @@
 <div>
     <a asp-action="Index">Back to List</a>
 </div>
-
-

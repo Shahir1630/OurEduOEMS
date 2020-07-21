@@ -1,4 +1,5 @@
-﻿using OurEduOEMS.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using OurEduOEMS.Data;
 using OurEduOEMS.Models;
 using OurEduOEMS.Services.Interfaces;
 using System;
@@ -28,9 +29,14 @@ namespace OurEduOEMS.Services
             _context.SaveChanges ();
         }
 
+        public List<Classes> GetAllClasses ()
+        {
+            return _context.Classes.ToList ();
+        }
+
         public List<Subjects> GetAllSubjects ()
         {
-            return _context.Subjects.ToList ();
+            return _context.Subjects.Include(c=> c.Classes).ToList ();
         }
 
         public Subjects GetSubjects (int Id)

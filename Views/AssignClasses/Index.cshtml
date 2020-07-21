@@ -1,7 +1,7 @@
-﻿@model List<Classes>
+﻿@model List<AssignedClasses>
 
 @{
-    ViewData["Title"] = "All Class";
+    ViewData["Title"] = "All Assigned Class";
 }
 
 <h1>Index</h1>
@@ -14,6 +14,13 @@
         <tr>
             <th>
                 Class Name
+            </th> 
+
+            <th>
+                Assigning Year
+            </th>
+            <th>
+                Section Name
             </th>
         </tr>
     </thead>
@@ -22,16 +29,20 @@
         {
             <tr>
                 <td>
-                    @item.ClassName
+                    @item.Classes.ClassName
+                </td><td>
+                    @item.AssigningYear
+                </td><td>
+                    @item.SectionName
                 </td>
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
                     <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
                     <a class="btn btn-danger delete"
                        data-id="@item.Id"
-                       data-controller="Classes"
+                       data-controller="AssignClasses"
                        data-action="Delete"
-                       data-body-message="Are You Sure to Delete the Class?">Delete</a>
+                       data-body-message="Are You Sure to Delete the Assign Class?">Delete</a>
 
                 </td>
             </tr>

@@ -8,10 +8,14 @@ namespace OurEduOEMS.Models
 {
     public class Classes
     {
-        [Key]
-        public int ClassId { get; set; }
+        public int Id { get; set; }
+
         [Required]
         public string ClassName { get; set; }
+        public ICollection<AssignedClasses> AssignedClasses { get; set; }
+        
+        public ICollection<Subjects> Subjects { get; set; }
+
 
     }
 }
